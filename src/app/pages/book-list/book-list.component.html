@@ -1,8 +1,13 @@
 <h2>Book List</h2>
 
+<a routerLink="/add">➕ Add Book</a>
+
 <ul>
   <li *ngFor="let book of books">
     <strong>{{ book.title }}</strong> - {{ book.author }}
     <p>{{ book.description }}</p>
+
+    <!-- 🔥 DELETE BUTTON -->
+    <button (click)="deleteBook(book.id!)">Delete</button>
   </li>
 </ul>

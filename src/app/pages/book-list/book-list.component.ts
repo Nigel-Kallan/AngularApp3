@@ -16,6 +16,22 @@ export class BookListComponent implements OnInit {
 
   constructor(private bookService: BookService) {}
 
+  deleteBook(id: number) {
+    console.log("CLICKED:", id);
+  
+    this.bookService.deleteBook(id).subscribe({
+      next: (res) => {
+        console.log("SERVER RESPONSE:", res);
+  
+        // update UI
+        this.books = this.books.filter(book => book.id !== id);
+      },
+      error: (err) => {
+        console.error("DELETE ERROR:", err);
+      }
+    });
+  }
+
   ngOnInit() {
     this.bookService.getBooks().subscribe(data => {
       console.log(data);   // 🔍 debug

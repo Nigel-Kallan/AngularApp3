@@ -16,6 +16,10 @@ export class BookService {
     return this.http.get<Book[]>(this.apiUrl);
   }
 
+  deleteBook(id: number) {
+    return this.http.delete(`${this.apiUrl}?id=${id}`);
+  }
+
   addBook(book: Book) {
     return this.http.post(this.apiUrl, book);
   }
