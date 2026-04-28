@@ -1,4 +1,22 @@
-# AngularApp3
+# AngularApp3 - Book Browser App
+
+## Features
+- View books (/list)
+- Add books (/add)
+- Angular routing
+- HTTP communication with PHP backend
+
+## Backend Setup
+1. Install XAMPP
+2. Place books.php in:
+   C:\xampp\htdocs\api\
+3. Start Apache & MySQL
+
+## Database Setup
+1. Import books_db.sql into phpMyAdmin
+
+## API URL
+http://localhost/api/books.php# AngularApp3
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.20.
 
