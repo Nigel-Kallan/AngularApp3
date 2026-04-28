@@ -1,12 +1,19 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  standalone: true,
+  imports: [RouterOutlet, RouterLink],  // ✅ REQUIRED
+  template: `
+    <h1>Book App</h1>
+
+    <nav>
+      <a routerLink="/list">Book List</a> |
+      <a routerLink="/add">Add Book</a>
+    </nav>
+
+    <router-outlet></router-outlet>   <!-- 🔥 THIS IS CRITICAL -->
+  `
 })
-export class AppComponent {
-  title = 'AngularApp3';
-}
+export class AppComponent {}

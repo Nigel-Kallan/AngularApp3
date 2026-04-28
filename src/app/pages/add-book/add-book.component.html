@@ -1,0 +1,8 @@
+<h2>Add Book</h2>
+
+<input [(ngModel)]="title" placeholder="Title"><br>
+<input [(ngModel)]="author" placeholder="Author"><br>
+<textarea [(ngModel)]="description" placeholder="Description"></textarea><br>
+
+<button (click)="addBook()">Save</button>
+<a routerLink="/list">Back</a>
