@@ -10,7 +10,9 @@ import { RouterOutlet, RouterLink } from '@angular/router';
 
     <nav>
       <a routerLink="/list">Book List</a> |
-      <a routerLink="/add">Add Book</a>
+      <a routerLink="/add">Add Book</a> |
+      <a routerLink="/register">Register</a> |
+      <a routerLink="/login">Login</a>
     </nav>
 
     <router-outlet></router-outlet>   <!-- 🔥 THIS IS CRITICAL -->
