@@ -6,42 +6,59 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-book',
-  standalone: true,                      // ✅ REQUIRED
-  imports: [CommonModule, FormsModule],  // ✅ REQUIRED for ngModel
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './add-book.component.html',
-  styleUrls: ['./add-book.component.css'] // ✅ FIX
+  styleUrls: ['./add-book.component.css']
 })
 export class AddBookComponent {
 
-  title = '';
-  author = '';
-  description = '';
+  title: string = '';
+  author: string = '';
+  description: string = '';
+
+  selectedFile!: File;
 
   constructor(
     private bookService: BookService,
     private router: Router
   ) {}
 
+  // ✅ handle file input
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
+
+  // ✅ add book using FormData (IMPORTANT)
   addBook() {
 
-    if (!this.title.trim()) return; // prevent empty
+    if (!this.title.trim()) return;
 
-    const newBook = {
-      title: this.title,
-      author: this.author,
-      description: this.description
-    };
+    const formData = new FormData();
 
-    this.bookService.addBook(newBook).subscribe(() => {
-      alert("Book added!");
+    formData.append('title', this.title);
+    formData.append('author', this.author);
+    formData.append('description', this.description);
 
-      // clear form
-      this.title = '';
-      this.author = '';
-      this.description = '';
+    if (this.selectedFile) {
+      formData.append('file', this.selectedFile);
+    }
 
-      // go back to list
-      this.router.navigate(['/list']);
+    this.bookService.addBook(formData).subscribe({
+      next: () => {
+        alert("Book added successfully!");
+
+        // clear form
+        this.title = '';
+        this.author = '';
+        this.description = '';
+
+        // go back to list
+        this.router.navigate(['/list']);
+      },
+      error: (err) => {
+        console.error("Add error:", err);
+      }
     });
   }
 }

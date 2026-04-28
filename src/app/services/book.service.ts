@@ -8,19 +8,32 @@ import { Book } from '../models/book.model';
 })
 export class BookService {
 
-  private apiUrl = 'http://localhost/api/books.php';  // ✅ your working API
+  private apiUrl = 'http://localhost/api/books.php';
 
   constructor(private http: HttpClient) {}
 
+  // ✅ GET all books
   getBooks(): Observable<Book[]> {
     return this.http.get<Book[]>(this.apiUrl);
   }
 
-  deleteBook(id: number) {
+  // ✅ ADD book (with FormData for file upload)
+  addBook(formData: FormData): Observable<any> {
+    return this.http.post(this.apiUrl, formData);
+  }
+
+  // ✅ DELETE book
+  deleteBook(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}?id=${id}`);
   }
 
-  addBook(book: Book) {
-    return this.http.post(this.apiUrl, book);
+  getBookById(id: number) {
+    return this.http.get<any>(`${this.apiUrl}?id=${id}`);
   }
+
+  // ✅ UPDATE book (FormData for file upload)
+  updateBook(formData: FormData): Observable<any> {
+    return this.http.post(this.apiUrl, formData);
+  }
+
 }

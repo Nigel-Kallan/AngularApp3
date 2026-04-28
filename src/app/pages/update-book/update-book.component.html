@@ -1,0 +1,12 @@
+<h2>Update Book</h2>
+
+<input [(ngModel)]="title" placeholder="Title"><br><br>
+
+<input [(ngModel)]="author" placeholder="Author"><br><br>
+
+<textarea [(ngModel)]="description" placeholder="Description"></textarea><br><br>
+
+<input type="file" (change)="onFileSelected($event)"><br><br>
+
+<button (click)="updateBook()">Update Book</button>
+<a routerLink="/list">Back</a>

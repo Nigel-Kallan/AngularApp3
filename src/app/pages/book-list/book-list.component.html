@@ -2,12 +2,32 @@
 
 <a routerLink="/add">➕ Add Book</a>
 
-<ul>
-  <li *ngFor="let book of books">
-    <strong>{{ book.title }}</strong> - {{ book.author }}
-    <p>{{ book.description }}</p>
+<br><br>
 
-    <!-- 🔥 DELETE BUTTON -->
-    <button (click)="deleteBook(book.id!)">Delete</button>
-  </li>
-</ul>
+<table border="1" cellpadding="10">
+  <tr>
+    <th>Image</th>
+    <th>Title</th>
+    <th>Author</th>
+    <th>Description</th>
+    <th>Actions</th>
+  </tr>
+
+  <tr *ngFor="let book of books">
+    <td>
+      <img 
+        *ngIf="book.image" 
+        [src]="'http://localhost/api/uploads/' + book.image" 
+        width="80">
+    </td>
+
+    <td>{{ book.title }}</td>
+    <td>{{ book.author }}</td>
+    <td>{{ book.description }}</td>
+
+    <td>
+      <button [routerLink]="['/update', book.id]">Update</button>
+      <button (click)="deleteBook(book.id!)">Delete</button>
+    </td>
+  </tr>
+</table>
